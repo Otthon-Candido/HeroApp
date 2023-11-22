@@ -1,0 +1,9 @@
+<ng-template #customLoadingTemplate>
+    <div class="custom-class">
+        <h3>
+            {{ loadingService.message }}
+        </h3>
+    </div>
+</ng-template>
+<ngx-loading [show]="loadingService.isVisible()" [config]="{ backdropBorderRadius: '3px' }"
+    [template]="customLoadingTemplate"></ngx-loading>

@@ -1,0 +1,46 @@
+<div class="container-fluid">
+
+    <div class="card-header">
+         <h4 class="float-left">{{actionName}}</h4> 
+
+        <button (click)="save()" [disabled]="!form.valid" class="btn-custom btn btn-sm btn-primary float-right ml-1"
+            form="alarmForm">
+            <i class="far fa-save" aria-hidden="true"></i>
+            Salvar</button>
+
+
+        <button (click)="back()" class="btn-custom btn btn-sm btn-primary float-right ml-1" form="alarmForm">
+            <em class="fas fa-arrow-left"></em>
+            Voltar</button>
+
+    </div>
+<div class="card-body">
+<form [formGroup]="form">
+    <div class="panel panel-default organizedPanel">
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Poder <small class="requiredField">*</small></label>
+                        <input formControlName="superPower" title="superPower" id="superPower" name="superPower" type="text"
+                            class="form-control" maxlength="60"
+                          >
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Descrição do Poder <small class="requiredField">*</small></label>
+                        <input formControlName="description" title="description" id="description" name="description" type="text"
+                            class="form-control" maxlength="60"
+                          >
+                    </div>
+                </div>
+                
+            </div>
+          
+        </div>
+    </div>
+</form>
+</div>
+</div>

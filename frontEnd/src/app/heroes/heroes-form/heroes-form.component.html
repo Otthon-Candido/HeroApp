@@ -1,0 +1,151 @@
+<div class="container-fluid">
+  <div class="card-header">
+    <h4 class="float-left">{{ actionName }}</h4>
+
+    <button
+      (click)="save()"
+      [disabled]="!form.valid"
+      class="btn-custom btn btn-sm btn-primary float-right ml-1"
+      form="alarmForm"
+    >
+      <i class="far fa-save" aria-hidden="true"></i>
+      Salvar
+    </button>
+
+    <button
+      (click)="back()"
+      class="btn-custom btn btn-sm btn-primary float-right ml-1"
+      form="alarmForm"
+    >
+      <em class="fas fa-arrow-left"></em>
+      Voltar
+    </button>
+  </div>
+  <div class="card-body">
+    <form [formGroup]="form">
+      <div class="panel panel-default organizedPanel">
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Nome <small class="requiredField">*</small></label>
+                <input
+                  formControlName="name"
+                  title="name"
+                  id="superPower"
+                  name="name"
+                  type="text"
+                  class="form-control"
+                  maxlength="60"
+                />
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <label
+                  >Nome do Herói <small class="requiredField">*</small></label
+                >
+                <input
+                  formControlName="heroName"
+                  title="heroName"
+                  id="heroName"
+                  name="heroName"
+                  type="text"
+                  class="form-control"
+                  maxlength="60"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label
+                  >Data de nascimento
+                  <small class="requiredField">*</small></label
+                >
+                <input
+                  formControlName="birthDate"
+                  title="birthDate"
+                  id="birthDate"
+                  name="birthDate"
+                  type="date"
+                  class="form-control"
+                  maxlength="60"
+                />
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Peso <small class="requiredField">*</small></label>
+                <input
+                  formControlName="heroWeight"
+                  title="heroWeight"
+                  id="heroWeight"
+                  name="heroWeight"
+                  type="text"
+                  class="form-control"
+                  maxlength="60"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Altura <small class="requiredField">*</small></label>
+                <input
+                  formControlName="heroHeight"
+                  title="heroHeight"
+                  id="heroHeight"
+                  name="heroHeight"
+                  type="text"
+                  class="form-control"
+                  maxlength="60"
+                />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label style="display: block;">Poderes <small class="requiredField">*</small></label>
+                <mat-form-field>
+                  <mat-label>Toppings</mat-label>
+                  <mat-select [formControl]="toppings" multiple>
+                    <mat-select-trigger>
+                      {{ toppings.value?.[0] || '' }}
+                      <ng-container
+                        *ngIf="
+                          (toppings.value?.length || 0) > 1;
+                          else noSelection
+                        "
+                      >
+                        <span class="example-additional-selection">
+                          (+{{ (toppings.value?.length || 0) - 1 }}
+                          {{
+                            toppings.value?.length === 2 ? "other" : "others"
+                          }})
+                        </span>
+                      </ng-container>
+                      <ng-template #noSelection></ng-template>
+                    </mat-select-trigger>
+
+                    <mat-option
+                      *ngFor="let topping of toppingList"
+                      [value]="topping"
+                    >
+                      {{ topping }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,60 @@
+<div class="sidebar d-flex" style="position: relative;" [ngClass]="{
+    hide: sidebarConfig.toggleSideBar,
+    show: !sidebarConfig.toggleSideBar
+  }">
+  <div style="width: 100%;" id="wrapper"
+    [class.toggled]="sidebarConfig.toggleSideBar">
+    <div id="sidebar-wrapper">
+      <div class="sidebar-top">
+        <button type="button" id="toggle_button" (click)="toggleSidebar(false)" class="btn toggle">
+          <svg class="sidebar-retracted" xmlns="http://www.w3.org/2000/svg">
+            <path class="colorFill" [attr.d]="
+                sidebarConfig.toggleSideBar ? iconRight?.svg : iconLeft?.svg
+              " />
+          </svg>
+        </button>
+        <div class="sidebar-middle">
+          <div class="d-flex">
+
+            <ul id="minha_div" class="list-group-flush">
+              <li *ngFor="let item of sidebarConfig.sidebarItems; let i = index" class="list-group-item-action"
+                [ngClass]="{ 'list-show': item.checked }"
+                [ngStyle]="{'width': sidebarConfig.toggleSideBar ? '70%' : '90%' }"
+                (click)="openSubMenus(item.id + i, item );onCLickItem(item,$event)" placement="right"
+               >
+
+                <div class="menus">
+                  <div class="size-menus">
+                    <div class="sidebar-logo-middle">
+                      <img class="iconeTitulo" [src]="item?.svgIcon" alt="iconTitle" />
+                    </div>
+                    <p class="menuName" [hidden]="sidebarConfig.toggleSideBar">
+                      {{ item.name }}
+                    </p>
+                  </div>
+                  <div>
+                    <i [hidden]="hiddenCaret(item)" class="fa menu-icon"
+                      [ngClass]="item.hidden ? 'fa-caret-down' : 'fa-caret-up'" aria-hidden="true"></i>
+                  </div>
+                </div>
+                <ul class="slide subMenu {{item.id + i}}" style="z-index: 1000;">
+                  <li [hidden]="sidebarConfig.toggleSideBar" class="itens"
+                    *ngFor="let submenuItem of item.subMenuItemns" id="{{ submenuItem.id }}"
+                    (click)="onCLickItem(submenuItem, $event);">
+                    <div class="sidebar-icon-subMenu" *ngIf="submenuItem?.svgIcon">
+                      <img class="iconeSubTitulo" [src]="submenuItem?.svgIcon" alt="iconSubTitle" />
+                    </div>
+                    <div>
+                      <p class="text-subMenu-title" [ngClass]="{'subMenu-no-icon' : !submenuItem?.svgIcon}">{{
+                        submenuItem.name }}</p>
+                    </div>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
